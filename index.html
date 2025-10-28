@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Señor Papa </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="header-content">
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="img general/logo.PNG" alt="Señor Papa" class="logo">
+      </a>
+      <h1>El Señor Papa</h1>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html" class="activo">Inicio</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="tabla.html">Tabla</a></li>
+        <li><a href="formulario.html">Reservación</a></li>
+        <li><a href="mision.html">Nuestra Misión</a></li>
+        <li><a href="medioambiente.html">Plan Ambiental</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+   <main>
+    <section>
+        <h2>1000 Maneras Para Enamorarte De La Papa</h2>
+        <p>Hola esto es un poco del mundo que queremos que ustedes vean</p>
+        <img src="img general/img8.jpg" alt="Imagen de portada" class="portada" onclick="abrirModal(this)">
+    </section>
+    <article>
+        <h3>1000 Maneras de Enamorarte de la Papa</h3>
+        <p>Nosotros queremos que todos puedan ver un poco del mundo de las papas y como poder utilizarlas al 100%</p>
+    </article>
+   </main>
+   <footer>
+    <p>Samuel Montes, Felipe Riascos y Laurenth Valencia | El mundo de las Papas</p>
+   </footer>
+       <!-- Modal para ampliar imagen -->
+<div id="modal" class="modal" onclick="cerrarModal()">
+  <img id="imagenModal">
+</div>
+
+<script>
+function abrirModal(imagen) {
+  const modal = document.getElementById("modal");
+  const imagenModal = document.getElementById("imagenModal");
+  imagenModal.src = imagen.src;
+  modal.style.display = "flex";
+}
+
+function cerrarModal() {
+  document.getElementById("modal").style.display = "none";
+}
+</script>
+</body>
+</html>

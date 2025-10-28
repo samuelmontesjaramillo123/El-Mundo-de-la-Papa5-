@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+  <div class="header-content">
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="img general/logo.PNG" alt="Logo Señor Papa" class="logo">
+      </a>
+      <h1>El Señor Papa</h1>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html" class="activo">Inicio</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="tabla.html">Tabla</a></li>
+        <li><a href="formulario.html">Reservación</a></li>
+        <li><a href="mision.html">Nuestra Misión</a></li>
+        <li><a href="medioambiente.html">Plan Ambiental</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+
+    <main>
+        <section>
+            <h2>1000 Maneras Para Enamorarte De La Papa</h2>
+            <div class="productos">
+               <article>
+                <img src="img general/img2" alt="Pavé de Papa" onclick="abrirModal(this)">
+                <h3>Pavé de Papa 7.00 US$</h3>
+                <p>Delicadas láminas de papa horneadas lentamente con crema fresca, mantequilla y un toque de queso fundido. Su textura suave y su dorado perfecto hacen de este plato el acompañamiento ideal para realzar cualquier experiencia gastronómica.</p>
+               </article>
+               <article>
+                <img src="img general/img3" alt="Bastones de Papa y Queso" onclick="abrirModal(this)">
+                <h3>Bastones de Papa y Queso 7.00 US$</h3>
+                <p>Crujientes por fuera y suaves por dentro, estos bastones combinan el sabor dorado de la papa con el toque fundente del queso. Una preparación irresistible, perfecta para compartir o disfrutar como entrada. Cada bocado ofrece una mezcla deliciosa de textura y sabor que conquista al instante.</p>
+               </article>
+               <article>
+                <img src="img general/img4" alt="Mochis de Papa" onclick="abrirModal(this)">
+                <h3>Mochis de Papa 9.00 US$</h3>
+                <p>Suaves y delicados bocaditos elaborados con papa y una textura ligeramente elástica, inspirados en la cocina oriental. Dorados al exterior y tiernos por dentro, ofrecen un sabor sutil y reconfortante que combina a la perfección con salsas saladas o dulces. Una experiencia diferente y deliciosa en cada bocado.</p>
+                </article>
+                <article>
+                <img src="img general/img7" alt="Papas Boom" onclick="abrirModal(this)">
+                <h3>Papas Boom 10.00 US$</h3>
+                <p>Deliciosas esferas doradas por fuera y suaves por dentro, rellenas con un cremoso puré de papa y un toque de queso fundido o carne sazonada. Su textura crujiente y su sabor casero las convierten en un bocado irresistible, perfecto como entrada o acompañamiento. ¡Una explosión de sabor en cada mordisco!</p>
+               </article>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Samuel Montes, Felipe Riascos y Laurenth Valencia | El mundo de las Papas</p>
+    </footer>
+    <!-- Modal para ampliar imagen -->
+<div id="modal" class="modal" onclick="cerrarModal()">
+  <img id="imagenModal">
+</div>
+
+<script>
+function abrirModal(imagen) {
+  const modal = document.getElementById("modal");
+  const imagenModal = document.getElementById("imagenModal");
+  imagenModal.src = imagen.src;
+  modal.style.display = "flex";
+}
+
+function cerrarModal() {
+  document.getElementById("modal").style.display = "none";
+}
+</script>
+</body>
+</html>

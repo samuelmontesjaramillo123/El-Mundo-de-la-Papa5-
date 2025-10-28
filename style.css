@@ -1,0 +1,453 @@
+/* === Estilos generales === */
+body {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #FFF3C4; /* Fondo crema claro */
+  color: #000000; /* Marrón cálido para texto */
+}
+
+/* === Encabezado y navegación === */
+header {
+  background: linear-gradient(90deg, #FFB200, #FF914D, #f84d4d);
+  color: #fffdf2;
+  box-shadow: 0 0 20px rgb(231, 169, 54);
+  
+}
+
+header h1 {
+    font-size: 2.2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgb(255, 166, 0);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+nav ul li {
+    display:outside;
+    margin: 0 25px;
+}
+
+nav a {
+    color: #fff8dc;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: 0.3s;
+    
+}
+
+nav a:hover, nav a.activo {
+    color: #ffeb7a;
+    text-shadow: 0 0 10px #ffeb7a;
+    
+}
+
+/* === Secciones y productos === */
+main {
+    padding: 40px;
+    text-align: center;
+}
+
+main h2 {
+    color: #464127;
+    font-size: 1.8em;
+    text-shadow: 0 0 8px rgba(240, 199, 116, 0.329);
+}
+
+.productos {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.productos article {
+    width: 30%;
+    background: linear-gradient(145deg, #FFF8DC, #FFE9A0);
+    padding: 20px;
+    margin: 15px;
+    border-radius: 15px;
+    border: 2px solid #f3c966;
+    box-shadow: 0 0 15px rgb(240, 179, 47);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.productos article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(255, 150, 0, 0.5);
+}
+
+/* === Imagen de producto === */
+.productos img {
+  width: 250px;
+  border-radius: 15px;
+  border: 3px solid #FF914D;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 20px rgba(255, 145, 77, 0.4);
+}
+
+.productos img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(255, 166, 77, 0.6);
+  cursor: pointer;
+}
+
+/* === Modal interactivo === */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 10, 5, 0.95);
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
+.modal img {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 12px;
+  box-shadow: 0 0 40px #f4a261;
+  animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* === Tabla de precios o variedades === */
+table {
+    width: 85%;
+    margin: 40px auto;
+    border-collapse: collapse;
+    background-color: #FFF8DC;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #FFB200;
+}
+
+th, td {
+    border: 1px solid #4b3b25;
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #FF914D;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px, solid #4b3b25;
+    
+    
+}
+tr {
+    letter-spacing: 1px, solid #4b3b25;
+}
+td {
+    color: #5C4033;
+    
+}
+
+tr:nth-child(even) {
+    background-color: #eea230;
+}
+
+/* === Footer === */
+footer {
+    background-color: #FFB200;
+    color: #3e2723;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 40px;
+    border-top: 3px solid #A0522D;
+    box-shadow: 0 -2px 15px rgba(255, 150, 0, 0.3);
+}
+
+/* === Responsivo === */
+@media (max-width: 768px) {
+    .productos article {
+        width: 100%;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    table {
+        width: 100%;
+    }
+}
+/* === Imagen de portada === */
+.portada {
+  width: 40%;               /* ajusta el tamaño horizontal */
+  max-height: 700px;        /* evita que sea muy alta */
+  object-fit: cover;        /* recorta sin deformar */
+  display: block;
+  margin: 40px auto;        /* centra la imagen */
+  border-radius: 15px;
+  border: 2px solid #00bfff;
+  box-shadow: 0 0 25px rgba(0, 191, 255, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portada:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(0, 255, 163, 0.5);
+  cursor: pointer;
+}
+/* === Encabezado con logo a la izquierda === */
+header {
+  background: linear-gradient(90deg, #FFB200, #FF914D, #f84d4d);
+  color: #fff8dc;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  padding: 10px 40px;
+}
+
+/* Contenedor principal del header (logo + nav) */
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* === Logo + título === */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+    width: 120px;              /* ancho del logo */
+    height: 80px;              /* alto del logo (más bajo = más ovalado) */
+    border-radius: 50%;        /* redondea los bordes → forma ovalada */
+    border: 3px solid #b8860b; /* 👈 borde dorado (puedes cambiar el color) */
+    object-fit: cover;         /* ajusta la imagen sin deformarla */
+    cursor: pointer;           /* cursor tipo botón */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Efecto al pasar el mouse */
+.logo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    border-color: #ffd700; /* el borde se vuelve más brillante al pasar el mouse */
+}
+
+
+
+.logo-container h1 {
+  font-size: 1.8em;
+  letter-spacing: 2px;
+  margin: 0;
+  color: #fff8dc;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+/* === Navegación === */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 25px;
+}
+
+nav ul li a {
+  color: #fff8dc;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.activo {
+  color: #ffeb7a;
+  text-shadow: 0 0 10px #ffeb7a;
+}
+
+/* === Responsivo === */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    text-align: outside;
+  }
+
+  nav ul {
+    flex-direction: column;
+    margin-top: 10px;
+  }
+}
+
+.main-nav a:hover,
+.main-nav a.activo {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* === Responsivo === */
+@media (max-width: 820px) {
+  .site-title {
+    position: static;          /* deja el título en flujo normal */
+    transform: none;
+    margin: 0 auto;
+    padding-top: 8px;
+    pointer-events: auto;
+  }
+}
+
+.Objetivos {
+    display: flex;
+    flex-direction: column; /* 👈 Hace que los artículos se apilen */
+    align-items: center;    /* Centra los artículos horizontalmente */
+    margin-top: 30px;
+}
+
+.Objetivos article {
+    width: 80%; /* 👈 en lugar de 30% */
+    background: linear-gradient(145deg, #dd9934, #e96740);
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 15px;
+    border: 1px solid #b8860b;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.Objetivos article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+}
+ul {
+  list-style-type: disc; /* Muestra viñetas normales */
+  padding-left: 30px;   /* Espacio entre el borde y el texto */
+  margin: 10px 0;       /* Separación arriba y abajo */
+}
+
+li {
+  color: #fff;          /* Texto blanco (ajústalo si usas otro color de fondo) */
+  line-height: 1.8;     /* Espaciado entre líneas */
+  font-size: 16px;
+}
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;      /* necesario para posicionar el título */
+  display: flex;
+  align-items: left;
+  justify-content: space-between;
+  gap: 20px;
+}
+.logo img {
+  display: block;
+  width: 90px;    /* ajusta tamaño del logo aquí */
+  height: auto;
+}
+.site-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+  color: #3e2723;
+  font-weight: 800;
+  text-align: center;
+  pointer-events: none; /* evita que el titulo interfiera con clicks del menú */
+}
+.main-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+.main-nav a {
+  text-decoration: none;
+  color: #3e2723;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: background-color .18s, color .18s, transform .12s;
+}
+ .header-inner {
+    flex-direction: column;
+    gap: 10px;
+    padding: 8px 0;
+  }
+  .main-nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    
+  }
+  .logo img { width: 75px; }
+  .site-title { font-size: 1.4rem; }
+
+.header img.logo {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}
+/* === Campos del formulario === */
+input, select, textarea {
+  color: #000; /* 🔹 texto negro dentro del campo */
+  background-color: #ffe4b5; /* opcional: fondo cálido claro */
+  border: 1px solid #cc7a00;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #000000; /* gris oscuro para el texto de ejemplo */
+}
+.Objetivos2 {
+    display: flex;
+    flex-direction: column; /* 👈 Hace que los artículos se apilen */
+    align-items: center;    /* Centra los artículos horizontalmente */
+    margin-top: 30px;
+}
+
+.Objetivos2 article {
+    width: 80%; /* 👈 en lugar de 30% */
+    background: linear-gradient(145deg, #dd9934, #e96740);
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 15px;
+    border: 1px solid #b8860b;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.Objetivos2 article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+}
+.Objetivos2 {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #ffffff; /* Marrón cálido para texto */
+}
