@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+  <div class="header-content">
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="img general/logo.PNG" alt="Logo Señor Papa" class="logo">
+      </a>
+      <h1>El Señor Papa</h1>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html" class="activo">Inicio</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="tabla.html">Tabla</a></li>
+        <li><a href="formulario.html">Reservación</a></li>
+        <li><a href="mision.html">Nuestra Misión</a></li>
+        <li><a href="medioambiente.html">Plan Ambiental</a></li>
+        <li><a href="vision.html">Nuestra Visión</a></li>
+        <li class="carrito-icono">
+  <a href="carrito.html">
+    🛒 <span id="contador-carrito">0</span>
+  </a>
+</li>
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+
+    <main>
+        <section>
+            <h2>1000 Maneras Para Enamorarte De La Papa</h2>
+            <div class="productos">
+               <article class="producto">
+  <img src="img general/img2" alt="Pavé de Papa" style="width:250px; height:auto; border-radius:15px;"onclick="abrirModal(this)">
+  <h3 class="nombre">Pavé de Papa</h3>
+  <p class="precio">$7.00</p>
+  <p class="descripcion">
+    Delicadas láminas de papa horneadas lentamente con crema fresca, mantequilla y un toque de queso fundido.
+    Su textura suave y dorado perfecto hacen de este plato el acompañamiento ideal.
+  </p>
+  <label>Cantidad:</label>
+<input type="number" min="1" value="1" class="cantidad">
+  <button class="agregar-carrito" data-nombre="Pavé de Papa" data-precio="7.00">
+    🛒 Añadir al carrito
+  </button>
+</article>
+ <article class="producto">
+  <img src="img general/img3" alt="Bastones de Papa y Queso" style="width: 200px; height:auto; border-radius:15px;"onclick="abrirModal(this)">
+  <h3 class="nombre">Bastones de Papa y Queso</h3>
+  <p class="precio">$7.00</p>
+  <p class="descripcion">
+ Crujientes por fuera y suaves por dentro, estos bastones combinan el sabor dorado de la papa con el toque fundente del queso. Una preparación irresistible, perfecta para compartir o disfrutar como entrada. Cada bocado ofrece una mezcla deliciosa de textura y sabor que conquista al instante.</p>
+                <label>Cantidad:</label>
+<input type="number" min="1" value="1" class="cantidad">
+<button class="agregar-carrito" data-nombre="Bastones de Papa y Queso" data-precio="7.00">Añadir al carrito</button>
+               </article>
+               <article>
+<img src="img general/img4" alt="Mochis de Papa" style="width:250px; height:auto; border-radius:15px;"onclick="abrirModal(this)">
+                <h3 class="nombre">Mochis de Papa </h3>
+                <h3 class="nombre">Bastones de Papa y Queso</h3>
+  <p class="precio">$9.00</p>
+  <p class="descripcion">
+    Suaves y delicados bocaditos elaborados con papa y una textura ligeramente elástica, inspirados en la cocina oriental. Dorados al exterior y tiernos por dentro, ofrecen un sabor sutil y reconfortante que combina a la perfección con salsas saladas o dulces. Una experiencia diferente y deliciosa en cada bocado.</p>
+                <label>Cantidad:</label>
+<input type="number" min="1" value="1" class="cantidad">
+                <button class="agregar-carrito" data-nombre="Mochis de Papa" data-precio="9.00">Añadir al carrito</button>
+                </article>
+                <article>
+                <img src="img general/img7" alt="Papas Boom " style="width:250px; height:auto; border-radius:15px;"onclick="abrirModal(this)">
+                <h3 class="nombre">Papas Boom </h3>
+                <p class="precio">10.00 US$</p>
+                <p class="descripcion">Deliciosas esferas doradas por fuera y suaves por dentro, rellenas con un cremoso puré de papa y un toque de queso fundido o carne sazonada. Su textura crujiente y su sabor casero las convierten en un bocado irresistible, perfecto como entrada o acompañamiento. ¡Una explosión de sabor en cada mordisco!</p>
+               <label>Cantidad:</label>
+<input type="number" min="1" value="1" class="cantidad">
+                <button class="agregar-carrito" data-nombre="Papas Boom" data-precio="10.00">Añadir al carrito</button>
+               </article>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Samuel Montes, Felipe Riascos y Laurenth Valencia | El mundo de las Papas</p>
+    </footer>
+    <!-- Modal para ampliar imagen -->
+<div id="modal" class="modal" onclick="cerrarModal()">
+  <img id="imagenModal">
+</div>
+
+<script>
+// === SISTEMA DE CARRITO CON CONTADOR EN TIEMPO REAL ===
+
+// Esperamos a que el contenido esté listo
+document.addEventListener("DOMContentLoaded", () => {
+  const botones = document.querySelectorAll(".agregar-carrito");
+  const contadorCarrito = document.getElementById("contador-carrito");
+
+  // Función para actualizar el número del carrito
+  function actualizarContador() {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+    if (contadorCarrito) contadorCarrito.textContent = totalItems;
+  }
+
+  // Inicializar contador al cargar la página
+  actualizarContador();
+
+  // Evento para cada botón "Agregar al carrito"
+  botones.forEach((boton) => {
+    boton.addEventListener("click", (e) => {
+      const producto = e.target.closest("article");
+      const nombre = boton.dataset.nombre;
+      const precio = parseFloat(boton.dataset.precio);
+      const cantidad = parseInt(producto.querySelector(".cantidad").value);
+
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      const existente = carrito.find(item => item.nombre === nombre);
+
+      if (existente) {
+        existente.cantidad += cantidad;
+      } else {
+        carrito.push({ nombre, precio, cantidad });
+      }
+
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+
+      // Actualiza el contador sin recargar
+      actualizarContador();
+
+      // Mensaje de confirmación
+      alert(`${cantidad} × ${nombre} se agregó al carrito 🛒`);
+    });
+  });
+});
+</script>
+
+<script>
+// === FUNCIONES PARA ABRIR Y CERRAR EL MODAL ===
+function abrirModal(imgElement) {
+  const modal = document.getElementById("modal");
+  const imagenModal = document.getElementById("imagenModal");
+  imagenModal.src = imgElement.src;
+  modal.style.display = "flex";
+}
+
+function cerrarModal() {
+  const modal = document.getElementById("modal");
+  modal.style.display = "none";
+}
+</script>
+
+<style>
+/* === ESTILO DEL MODAL === */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal img {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #fff;
+  transition: transform 0.3s ease;
+}
+
+.modal img:hover {
+  transform: scale(1.05);
+}
+</style>
+
+</body>
+</html>

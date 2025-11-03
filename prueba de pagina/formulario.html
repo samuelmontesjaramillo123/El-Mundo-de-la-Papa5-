@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Reservación</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Política de seguridad básica -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'">
+
+
+  <style>
+  /* === Formulario con estilo tecnológico cálido (compatibilidad con el CSS principal) === */
+  .form-container {
+      background: linear-gradient(145deg, #ff9900, #f85d1f);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      width: 400px;
+      margin: 60px auto;
+      border: 2px solid #b8860b;
+      text-align: left;
+      
+  }
+
+  .form-container h2 {
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+  }
+
+  label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #ffe5b4;
+  }
+
+  input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #b8860b;
+      border-radius: 8px;
+      background-color: #a5a3a357;
+      color: #000000;
+      box-sizing: border-box;
+      transition: 0.3s;
+      color: #000000;
+  }
+
+  input:focus, select:focus, textarea:focus {
+      border-color: #ffeb7a;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+      outline: none;
+  }
+
+  textarea {
+      resize: none;
+  }
+
+  button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 25px;
+      background: linear-gradient(90deg, #b8860b, #f4a261);
+      color: #424141;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      text-transform: uppercase;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+  }
+
+  button:hover {
+      background: linear-gradient(90deg, #ffeb7a, #f4a261);
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+  }
+
+  .security-note {
+      font-size: 12px;
+      color: #000000;
+      margin-top: 15px;
+      text-align: center;
+  }
+  </style>
+</head>
+
+<body>
+  <!-- === Encabezado del sitio === -->
+  <header>
+  <div class="header-content">
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="img general/logo.PNG" alt="Logo Señor Papa" class="logo">
+      </a>
+      <h1>El Señor Papa</h1>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html" class="activo">Inicio</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="tabla.html">Tabla</a></li>
+        <li><a href="formulario.html">Reservación</a></li>
+        <li><a href="mision.html">Nuestra Misión</a></li>
+        <li><a href="medioambiente.html">Plan Ambiental</a></li>
+        <li><a href="vision.html">Nuestra Visión</a></li>
+        <li class="carrito-icono"><a href="carrito.html">🛒 <span id="contador-carrito">0</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+
+  <!-- === Contenedor principal === -->
+  <main>
+    <div class="form-container">
+      <h2>Formulario de Reservación</h2>
+      <form id="reservacion" 
+      action="https://formspree.io/f/xkgprzvg" 
+      method="POST" 
+      onsubmit="return validarReservacion()">
+
+        
+        <label for="nombre">Nombre completo:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Ej: Samuel Montes" required>
+
+        <label for="correo">Correo electrónico:</label>
+        <input type="email" id="correo" name="correo" placeholder="Ej: samuel@gmail.com" required>
+
+        <label for="telefono">Teléfono de contacto:</label>
+        <input type="tel" id="telefono" name="telefono" placeholder="Ej: +57 300 123 4567" required>
+
+        <label for="fecha">Fecha de la reservación:</label>
+        <input type="date" id="fecha" name="fecha" required>
+
+        <label for="hora">Hora de la reservación:</label>
+        <input type="time" id="hora" name="hora" required>
+
+        <label for="personas">Número de personas:</label>
+        <select id="personas" name="personas" required>
+          <option value="">Selecciona...</option>
+          <option value="1">1 persona</option>
+          <option value="2">2 personas</option>
+          <option value="3">3 personas</option>
+          <option value="4">4 personas</option>
+          <option value="5">5 personas</option>
+          <option value="6+">Más de 6 personas</option>
+        </select>
+
+        <label for="mensaje">Comentarios adicionales:</label>
+        <textarea id="mensaje" name="mensaje" rows="3" placeholder="Ej: Mesa cerca a la ventana..."></textarea>
+
+        <button type="submit">Reservar ahora</button>
+      </form>
+
+      <p class="security-note">🔒 Tus datos se procesan de forma segura y no se comparten con terceros.</p>
+    </div>
+  </main>
+
+  <!-- === Pie de página === -->
+  <footer>
+    <p>© 2025 Papas Gourmet - Reservaciones Seguras 🥔✨</p>
+  </footer>
+
+  <!-- === Validación del formulario === -->
+  <script>
+    function validarReservacion() {
+      const nombre = document.getElementById('nombre').value.trim();
+      const correo = document.getElementById('correo').value.trim();
+      const fecha = document.getElementById('fecha').value;
+      const hora = document.getElementById('hora').value;
+
+      if (!nombre || !correo || !fecha || !hora) {
+        alert('⚠️ Por favor completa todos los campos obligatorios.');
+        return false;
+      }
+
+      const fechaSeleccionada = new Date(fecha);
+      const hoy = new Date();
+      if (fechaSeleccionada < hoy.setHours(0,0,0,0)) {
+        alert('⚠️ La fecha seleccionada no puede ser anterior a hoy.');
+        return false;
+      }
+
+      alert('✅ Reservación enviada con éxito. ¡Gracias por elegirnos!');
+      return true;
+    }
+  </script>
+ <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const span = document.getElementById('contador-carrito');
+
+  function contarDesdeLocalStorage() {
+    const raw = localStorage.getItem('carrito');
+    if (!span) return; // si no existe el span no hacemos nada
+
+    if (!raw) {
+      span.textContent = 0;
+      return 0;
+    }
+
+    try {
+      const data = JSON.parse(raw);
+
+      let total = 0;
+      if (Array.isArray(data)) {
+        // array de objetos {nombre, precio, cantidad} o array de strings
+        if (data.length && typeof data[0] === 'object') {
+          total = data.reduce((s, it) => s + (parseInt(it.cantidad) || 0), 0);
+        } else {
+          // array simple (nombres) -> contamos elementos
+          total = data.length;
+        }
+      } else if (data && typeof data === 'object') {
+        // quizá guardaste { items: [...] }
+        if (Array.isArray(data.items)) {
+          total = data.items.reduce((s, it) => s + (parseInt(it.cantidad) || 0), 0);
+        } else {
+          total = 0;
+        }
+      } else {
+        total = 0;
+      }
+
+      span.textContent = total;
+      return total;
+    } catch (err) {
+      // si no es JSON válido, intenta contar por seguridad
+      span.textContent = 0;
+      return 0;
+    }
+  }
+
+  // Inicializa contador al cargar la página
+  contarDesdeLocalStorage();
+
+  // Escucha cambios en localStorage desde otras pestañas
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'carrito') {
+      contarDesdeLocalStorage();
+    }
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Señor Papa </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <header>
+  <div class="header-content">
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="img general/logo.PNG" alt="Logo Señor Papa" class="logo">
+      </a>
+      <h1>El Señor Papa</h1>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html" class="activo">Inicio</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="tabla.html">Tabla</a></li>
+        <li><a href="formulario.html">Reservación</a></li>
+        <li><a href="mision.html">Nuestra Misión</a></li>
+        <li><a href="medioambiente.html">Plan Ambiental</a></li>
+        <li><a href="vision.html">Nuestra Visión</a></li>
+        <li class="carrito-icono">
+  <a href="carrito.html">
+    🛒 <span id="contador-carrito">0</span>
+  </a>
+</li>
+
+      </ul>
+    </nav>
+  </div>
+</header>
+<main>
+    <section>
+        <h2>Nuestra Misión Con El Señor Papa</h2>
+        <div class="Objetivos2">
+        <article>
+          <ul>
+            <p>En Señor Papa aspiramos a consolidarnos como un emprendimiento innovador, sostenible y educativo, dedicado a la preparación y comercialización de productos elaborados a base de papa en múltiples presentaciones. Nuestro propósito es ofrecer experiencias gastronómicas que combinen sabor, creatividad y conciencia ambiental, promoviendo el consumo de alimentos naturales, locales y nutritivos.</p>
+            <p>Buscamos inspirar a las nuevas generaciones a emprender de manera responsable, fomentando hábitos alimentarios saludables y el respeto por el entorno. Para lograrlo, implementamos prácticas sostenibles en cada etapa de nuestro proceso: desde la selección de materias primas cultivadas por productores locales, hasta la reducción del uso de plásticos mediante empaques biodegradables y estrategias de reciclaje.</p>
+            <p>A través de la tecnología y la educación, queremos construir un futuro en el que disfrutar de una buena comida también signifique cuidar el planeta, fortaleciendo la conciencia ecológica dentro de nuestra comunidad y contribuyendo al desarrollo de una alimentación más sana, justa y sostenible.</p>
+            </ul>
+            </div>
+        </article>
+    </section>
+</main>
+<footer>
+    <p>Samuel Montes, Felipe Riascos y Laurenth Valencia | El mundo de las Papas</p>
+   </footer>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const span = document.getElementById('contador-carrito');
+
+  function contarDesdeLocalStorage() {
+    const raw = localStorage.getItem('carrito');
+    if (!span) return; // si no existe el span no hacemos nada
+
+    if (!raw) {
+      span.textContent = 0;
+      return 0;
+    }
+
+    try {
+      const data = JSON.parse(raw);
+
+      let total = 0;
+      if (Array.isArray(data)) {
+        // array de objetos {nombre, precio, cantidad} o array de strings
+        if (data.length && typeof data[0] === 'object') {
+          total = data.reduce((s, it) => s + (parseInt(it.cantidad) || 0), 0);
+        } else {
+          // array simple (nombres) -> contamos elementos
+          total = data.length;
+        }
+      } else if (data && typeof data === 'object') {
+        // quizá guardaste { items: [...] }
+        if (Array.isArray(data.items)) {
+          total = data.items.reduce((s, it) => s + (parseInt(it.cantidad) || 0), 0);
+        } else {
+          total = 0;
+        }
+      } else {
+        total = 0;
+      }
+
+      span.textContent = total;
+      return total;
+    } catch (err) {
+      // si no es JSON válido, intenta contar por seguridad
+      span.textContent = 0;
+      return 0;
+    }
+  }
+
+  // Inicializa contador al cargar la página
+  contarDesdeLocalStorage();
+
+  // Escucha cambios en localStorage desde otras pestañas
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'carrito') {
+      contarDesdeLocalStorage();
+    }
+  });
+});
+</script>
+   </body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito de Compras - El Señor Papa</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+  <div class="header-content">
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="img general/logo.PNG" alt="Logo Señor Papa" class="logo">
+      </a>
+      <h1>El Señor Papa</h1>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html" class="activo">Inicio</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="tabla.html">Tabla</a></li>
+        <li><a href="formulario.html">Reservación</a></li>
+        <li><a href="mision.html">Nuestra Misión</a></li>
+        <li><a href="medioambiente.html">Plan Ambiental</a></li>
+        <li><a href="vision.html">Nuestra Visión</a></li>
+        <li class="carrito-icono">
+  <a href="carrito.html">
+    🛒 <span id="contador-carrito">0</span>
+  </a>
+</li>
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  <main class="carrito">
+    <h2>🛍️ Tu Carrito de Compras</h2>
+    <ul id="lista-carrito" class="lista-carrito"></ul>
+
+    <div class="carrito-total">
+      <p><strong>Total:</strong> $<span id="total">0</span></p>
+      <button id="vaciar-carrito" class="btn-vaciar">Vaciar Carrito</button>
+    </div>
+  </main>
+
+  <script>
+const listaCarrito = document.getElementById('lista-carrito');
+const total = document.getElementById('total');
+const vaciarBtn = document.getElementById('vaciar-carrito');
+const contadorCarrito = document.getElementById('contador-carrito');
+
+// Leer el carrito guardado o crear uno vacío
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+// === Función principal para actualizar la vista del carrito ===
+function actualizarCarrito() {
+  listaCarrito.innerHTML = '';
+  let totalPrecio = 0;
+  let totalItems = 0;
+
+  carrito.forEach((item, index) => {
+    const subtotal = item.precio * item.cantidad;
+    totalPrecio += subtotal;
+    totalItems += item.cantidad;
+
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <strong>${item.nombre}</strong> (x${item.cantidad}) - $${subtotal.toFixed(2)}
+      <button onclick="eliminarItem(${index})">❌</button>
+    `;
+    listaCarrito.appendChild(li);
+  });
+
+  // Mostrar el total general y cantidad de productos
+  total.textContent = totalPrecio.toFixed(2);
+  contadorCarrito.textContent = totalItems;
+
+  // Guardar carrito actualizado
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
+// === Eliminar producto individual ===
+function eliminarItem(index) {
+  carrito.splice(index, 1);
+  actualizarCarrito();
+}
+
+// === Vaciar todo el carrito ===
+vaciarBtn.addEventListener('click', () => {
+  carrito = [];
+  actualizarCarrito();
+});
+
+// === Mostrar carrito al cargar la página ===
+actualizarCarrito();
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const span = document.getElementById('contador-carrito');
+
+  function contarDesdeLocalStorage() {
+    const raw = localStorage.getItem('carrito');
+    if (!span) return; // si no existe el span no hacemos nada
+
+    if (!raw) {
+      span.textContent = 0;
+      return 0;
+    }
+
+    try {
+      const data = JSON.parse(raw);
+
+      let total = 0;
+      if (Array.isArray(data)) {
+        // array de objetos {nombre, precio, cantidad} o array de strings
+        if (data.length && typeof data[0] === 'object') {
+          total = data.reduce((s, it) => s + (parseInt(it.cantidad) || 0), 0);
+        } else {
+          // array simple (nombres) -> contamos elementos
+          total = data.length;
+        }
+      } else if (data && typeof data === 'object') {
+        // quizá guardaste { items: [...] }
+        if (Array.isArray(data.items)) {
+          total = data.items.reduce((s, it) => s + (parseInt(it.cantidad) || 0), 0);
+        } else {
+          total = 0;
+        }
+      } else {
+        total = 0;
+      }
+
+      span.textContent = total;
+      return total;
+    } catch (err) {
+      // si no es JSON válido, intenta contar por seguridad
+      span.textContent = 0;
+      return 0;
+    }
+  }
+
+  // Inicializa contador al cargar la página
+  contarDesdeLocalStorage();
+
+  // Escucha cambios en localStorage desde otras pestañas
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'carrito') {
+      contarDesdeLocalStorage();
+    }
+  });
+});
+</script>
+
+</body>
+</html>
